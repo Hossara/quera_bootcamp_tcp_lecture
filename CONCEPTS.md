@@ -284,9 +284,9 @@ TCP sequence numbers are 32-bit integers that label each byte of data transmitte
 ```
 TCP Header (simplified):
 ┌─────────────────────────────────────┐
-│ Sequence Number (32 bits)          │ ← Identifies this packet's data
+│ Sequence Number (32 bits)           │ ← Identifies this packet's data
 ├─────────────────────────────────────┤
-│ Acknowledgment Number (32 bits)    │ ← Confirms received data
+│ Acknowledgment Number (32 bits)     │ ← Confirms received data
 └─────────────────────────────────────┘
 
 Range: 0 to 4,294,967,295 (2^32 - 1)
@@ -475,54 +475,54 @@ Example:
 ```
 Client                              Server
   |                                   |
-  | Seq=1001, 100 bytes              |
-  |--------------------------------->|
+  | Seq=1001, 100 bytes               |
+  |---------------------------------->|
   |                                   | ✓ Received bytes 1001-1100
   |                                   |
   |              Ack=1101             |
-  |<---------------------------------|
+  |<----------------------------------|
   |                                   |
-  | Seq=1101, 50 bytes               |
-  |--------------------------------->|
+  | Seq=1101, 50 bytes                |
+  |---------------------------------->|
   |                                   | ✓ Received bytes 1101-1150
   |                                   |
   |              Ack=1151             |
-  |<---------------------------------|
+  |<----------------------------------|
 ```
 
 #### Scenario 2: Packet Loss and Retransmission
 ```
 Client                              Server
   |                                   |
-  | Seq=1001, 100 bytes              |
-  |--------X (lost!)                 |
+  | Seq=1001, 100 bytes               |
+  |--------X (lost!)                  |
   |                                   |
-  | (timeout, no ACK)                |
+  | (timeout, no ACK)                 |
   |                                   |
-  | Seq=1001, 100 bytes (RETRY)      |
-  |--------------------------------->|
+  | Seq=1001, 100 bytes (RETRY)       |
+  |---------------------------------->|
   |                                   | ✓ Received bytes 1001-1100
   |                                   |
   |              Ack=1101             |
-  |<---------------------------------|
+  |<----------------------------------|
 ```
 
 #### Scenario 3: Out-of-Order Delivery
 ```
 Client                              Server
   |                                   |
-  | Seq=1001, 100 bytes              |
+  | Seq=1001, 100 bytes               |
   |---------\                         |
   |          \                        |
-  | Seq=1101, 100 bytes              |
-  |----------\-----------------------|
+  | Seq=1101, 100 bytes               |
+  |----------\------------------------|
   |           \                       | ✓ Received 1101-1200 (buffered)
   |            \                      | ⏳ Waiting for 1001-1100
   |             \-------------------->|
   |                                   | ✓ Received 1001-1100
   |                                   | ✓ Combined with buffered data
   |              Ack=1201             |
-  |<---------------------------------|
+  |<----------------------------------|
   |       (acknowledges all data)     |
 ```
 
@@ -530,7 +530,7 @@ Client                              Server
 ```
 Time  Client (Seq → / ← Ack)         Server (Seq → / ← Ack)
 ────  ──────────────────────         ──────────────────────
-T1    Seq=1001, 100 bytes     →
+T1    Seq=1001, 100 bytes      →
 T2                             →      Received, Ack=1101
 T3                             ←      Seq=5001, 200 bytes
 T4    Received, Ack=5201       ←
@@ -602,7 +602,7 @@ Modern fix:
 │ Sequence Number Quick Reference                              │
 ├──────────────────────────────────────────────────────────────┤
 │ Purpose:          Track bytes transmitted                    │
-│ Size:             32 bits (0 to 4,294,967,295)              │
+│ Size:             32 bits (0 to 4,294,967,295)               │
 │ Initial Value:    Random (ISN)                               │
 │ Increases When:   Sending data, SYN, or FIN                  │
 │ Stays Same:       Pure ACKs, RST                             │
@@ -661,16 +661,16 @@ Result: Receiver might get:
 
 ### Real-World Decision Matrix
 
-| Application | Protocol | Reason |
-|------------|----------|--------|
-| Web Browsing | TCP | Need complete, correct pages |
-| Video Call | UDP | Speed > perfect quality |
-| Email | TCP | Can't lose messages |
-| Online Gaming | UDP | Real-time position updates |
-| File Download | TCP | Need complete file |
-| Live Sports Stream | UDP | Old frames aren't useful |
-| Database Query | TCP | Need exact data |
-| DNS Lookup | UDP | Quick, can retry if needed |
+| Application        | Protocol | Reason                       |
+|--------------------|----------|------------------------------|
+| Web Browsing       | TCP      | Need complete, correct pages |
+| Video Call         | UDP      | Speed > perfect quality      |
+| Email              | TCP      | Can't lose messages          |
+| Online Gaming      | UDP      | Real-time position updates   |
+| File Download      | TCP      | Need complete file           |
+| Live Sports Stream | UDP      | Old frames aren't useful     |
+| Database Query     | TCP      | Need exact data              |
+| DNS Lookup         | UDP      | Quick, can retry if needed   |
 
 ---
 
@@ -784,7 +784,7 @@ Example:
 
 **Our Implementation** uses JSON (self-describing) with newline delimiters:
 ```json
-{"command":"ECHO","data":"Hello"}\n
+{"command":"ECHO","data":"Hello"}
 ```
 
 ---
