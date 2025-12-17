@@ -70,29 +70,29 @@ The Internet is a global network of interconnected computers that communicate us
 ```
 Client                    Server
   |                         |
-  |--------- SYN --------->|  (Client initiates connection)
+  |--------- SYN ---------->|  (Client initiates connection)
   |                         |
-  |<----- SYN-ACK ---------|  (Server acknowledges)
+  |<------ SYN-ACK ---------|  (Server acknowledges)
   |                         |
-  |--------- ACK --------->|  (Client confirms)
+  |--------- ACK ---------->|  (Client confirms)
   |                         |
-  |   Connection Established|
+  | Connection Established  |
 ```
 
 ---
 
 ## ⚡ TCP vs UDP
 
-| Feature | TCP | UDP |
-|---------|-----|-----|
-| **Connection** | Connection-oriented | Connectionless |
-| **Reliability** | Guaranteed delivery | No guarantee |
-| **Ordering** | Maintains order | No ordering |
-| **Speed** | Slower (due to overhead) | Faster |
-| **Header Size** | 20 bytes | 8 bytes |
-| **Error Checking** | Extensive | Basic checksum |
-| **Flow Control** | Yes | No |
-| **Use Cases** | Web browsing, email, file transfer | Video streaming, online gaming, DNS |
+| Feature            | TCP                                | UDP                                 |
+|--------------------|------------------------------------|-------------------------------------|
+| **Connection**     | Connection-oriented                | Connectionless                      |
+| **Reliability**    | Guaranteed delivery                | No guarantee                        |
+| **Ordering**       | Maintains order                    | No ordering                         |
+| **Speed**          | Slower (due to overhead)           | Faster                              |
+| **Header Size**    | 20 bytes                           | 8 bytes                             |
+| **Error Checking** | Extensive                          | Basic checksum                      |
+| **Flow Control**   | Yes                                | No                                  |
+| **Use Cases**      | Web browsing, email, file transfer | Video streaming, online gaming, DNS |
 
 ### When to Use TCP:
 - ✅ Data integrity is critical
